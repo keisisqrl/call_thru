@@ -1,12 +1,14 @@
 defmodule CallThru.Fabric.Switch do
   use Ecto.Schema
   import Ecto.Changeset
-  alias CallThru.Fabric.Switch
+  alias CallThru.Fabric.{Switch, Line}
 
 
   schema "switches" do
     field :name, :string
     field :prefix, :string
+
+    has_many :lines, Line, foreign_key: :switch_id
 
     timestamps()
   end
