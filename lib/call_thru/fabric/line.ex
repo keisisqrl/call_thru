@@ -18,5 +18,6 @@ defmodule CallThru.Fabric.Line do
     line
     |> cast(attrs, [:number])
     |> validate_required([:number])
+    |> unique_constraint(:number, name: :lines_number_switch_id_index)
   end
 end
