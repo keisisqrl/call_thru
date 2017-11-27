@@ -145,7 +145,7 @@ defmodule CallThru.Fabric do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_line(attrs \\ %{}) do
+  def create_line(attrs) do
     %Line{}
     |> Line.changeset(attrs)
     |> Repo.insert()
@@ -163,7 +163,7 @@ defmodule CallThru.Fabric do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_line(%Line{} = line, attrs) do
+  def update_line(line, attrs) do
     line
     |> Line.changeset(attrs)
     |> Repo.update()
@@ -197,4 +197,12 @@ defmodule CallThru.Fabric do
   def change_line(%Line{} = line) do
     Line.changeset(line, %{})
   end
+
+  def get_lines_for_switch(id) do
+    id
+    |> get_switch!
+    |> Repo.preload(:lines)
+    |> (fn switch -> switch.lines end).()
+  end
+  
 end

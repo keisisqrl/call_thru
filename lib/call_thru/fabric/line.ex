@@ -16,7 +16,7 @@ defmodule CallThru.Fabric.Line do
   @doc false
   def changeset(%Line{} = line, attrs) do
     line
-    |> cast(attrs, [:number])
+    |> cast(attrs, [:number,:switch_id])
     |> validate_required([:number])
     |> unique_constraint(:number, name: :lines_number_switch_id_index)
   end
