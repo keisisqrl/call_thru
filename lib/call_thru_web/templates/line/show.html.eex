@@ -1,0 +1,13 @@
+<h2>Show Line</h2>
+
+<ul>
+
+  <li>
+    <strong>Number:</strong>
+    <%= @line.number %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: line_path(@conn, :edit, @line) %></span>
+<span><%= link "Back", to: line_path(@conn, :index) %></span>

@@ -64,4 +64,64 @@ defmodule CallThru.FabricTest do
       assert %Ecto.Changeset{} = Fabric.change_switch(switch)
     end
   end
+
+  describe "lines" do
+    alias CallThru.Fabric.Line
+
+    @valid_attrs %{number: "some number"}
+    @update_attrs %{number: "some updated number"}
+    @invalid_attrs %{number: nil}
+
+    def line_fixture(attrs \\ %{}) do
+      {:ok, line} =
+        attrs
+        |> Enum.into(@valid_attrs)
+        |> Fabric.create_line()
+
+      line
+    end
+
+    test "list_lines/0 returns all lines" do
+      line = line_fixture()
+      assert Fabric.list_lines() == [line]
+    end
+
+    test "get_line!/1 returns the line with given id" do
+      line = line_fixture()
+      assert Fabric.get_line!(line.id) == line
+    end
+
+    test "create_line/1 with valid data creates a line" do
+      assert {:ok, %Line{} = line} = Fabric.create_line(@valid_attrs)
+      assert line.number == "some number"
+    end
+
+    test "create_line/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Fabric.create_line(@invalid_attrs)
+    end
+
+    test "update_line/2 with valid data updates the line" do
+      line = line_fixture()
+      assert {:ok, line} = Fabric.update_line(line, @update_attrs)
+      assert %Line{} = line
+      assert line.number == "some updated number"
+    end
+
+    test "update_line/2 with invalid data returns error changeset" do
+      line = line_fixture()
+      assert {:error, %Ecto.Changeset{}} = Fabric.update_line(line, @invalid_attrs)
+      assert line == Fabric.get_line!(line.id)
+    end
+
+    test "delete_line/1 deletes the line" do
+      line = line_fixture()
+      assert {:ok, %Line{}} = Fabric.delete_line(line)
+      assert_raise Ecto.NoResultsError, fn -> Fabric.get_line!(line.id) end
+    end
+
+    test "change_line/1 returns a line changeset" do
+      line = line_fixture()
+      assert %Ecto.Changeset{} = Fabric.change_line(line)
+    end
+  end
 end

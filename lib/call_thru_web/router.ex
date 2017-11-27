@@ -19,6 +19,7 @@ defmodule CallThruWeb.Router do
     get "/", PageController, :index
 
     resources "/switches", SwitchController
+    resources "/lines", LineController
   end
 
   # Other scopes may use custom stacks.

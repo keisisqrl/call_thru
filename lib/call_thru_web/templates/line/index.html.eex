@@ -1,0 +1,26 @@
+<h2>Listing Lines</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Number</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for line <- @lines do %>
+    <tr>
+      <td><%= line.number %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: line_path(@conn, :show, line), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: line_path(@conn, :edit, line), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: line_path(@conn, :delete, line), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Line", to: line_path(@conn, :new) %></span>
