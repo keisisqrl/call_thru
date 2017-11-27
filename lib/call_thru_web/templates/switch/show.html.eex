@@ -1,0 +1,18 @@
+<h2>Show Switch</h2>
+
+<ul>
+
+  <li>
+    <strong>Name:</strong>
+    <%= @switch.name %>
+  </li>
+
+  <li>
+    <strong>Prefix:</strong>
+    <%= @switch.prefix %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: switch_path(@conn, :edit, @switch) %></span>
+<span><%= link "Back", to: switch_path(@conn, :index) %></span>

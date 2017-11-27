@@ -1,0 +1,5 @@
+<h2>New Switch</h2>
+
+<%= render "form.html", Map.put(assigns, :action, switch_path(@conn, :create)) %>
+
+<span><%= link "Back", to: switch_path(@conn, :index) %></span>

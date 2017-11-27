@@ -17,6 +17,8 @@ defmodule CallThruWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+
+    resources "/switches", SwitchController
   end
 
   # Other scopes may use custom stacks.

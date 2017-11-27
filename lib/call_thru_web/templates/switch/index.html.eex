@@ -1,0 +1,28 @@
+<h2>Listing Switches</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Prefix</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for switch <- @switches do %>
+    <tr>
+      <td><%= switch.name %></td>
+      <td><%= switch.prefix %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: switch_path(@conn, :show, switch), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: switch_path(@conn, :edit, switch), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: switch_path(@conn, :delete, switch), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Switch", to: switch_path(@conn, :new) %></span>
