@@ -200,11 +200,5 @@ defmodule CallThru.Fabric do
     Line.changeset(line, %{})
   end
 
-  def get_lines_for_switch(id) do
-    id
-    |> get_switch!
-    |> Repo.preload(:lines)
-    |> (fn switch -> switch.lines end).()
-  end
   
 end
