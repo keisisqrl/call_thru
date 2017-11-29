@@ -33,7 +33,7 @@ defmodule CallThru.Driver.Call do
           change
       end
     end).()
-    |> cast_assoc(:origin_line)
+    |> put_assoc(:origin_line,attrs[:origin_line])
     |> cast_assoc(:term_line)
     |> validate_required([])
   end
