@@ -12,6 +12,23 @@
     <%= @switch.prefix %>
   </li>
 
+  <li>
+    <strong>Associated lines:</strong>
+    <%= if (length(@switch.lines) > 0) do %>
+    <ul>
+      <%= for line <- @switch.lines do %>
+          <li>
+            <%= link line.number, to: line_path(@conn,:show,line.id) %>
+          </li>
+          <%= end %>
+    </ul>
+    <%= else %>
+    <em>none</em>
+    <%= end %>
+  </li>
+  
+          
+
 </ul>
 
 <span><%= link "Edit", to: switch_path(@conn, :edit, @switch) %></span>

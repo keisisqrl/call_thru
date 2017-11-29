@@ -7,6 +7,13 @@
     <%= @line.number %>
   </li>
 
+  <li>
+    <strong>Switch:</strong>
+    <%= link @line.switch.name,
+        to: switch_path(@conn,:show,@line.switch.id) %>
+  </li>
+  
+
 </ul>
 
 <span><%= link "Edit", to: line_path(@conn, :edit, @line) %></span>

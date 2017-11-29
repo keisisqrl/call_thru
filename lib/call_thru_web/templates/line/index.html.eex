@@ -5,6 +5,8 @@
     <tr>
       <th>Number</th>
 
+      <th>Switch</th>
+
       <th></th>
     </tr>
   </thead>
@@ -12,6 +14,8 @@
 <%= for line <- @lines do %>
     <tr>
       <td><%= line.number %></td>
+
+      <td><%= link line.switch.name, to: switch_path(@conn,:show,line.switch.id) %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: line_path(@conn, :show, line), class: "btn btn-default btn-xs" %></span>

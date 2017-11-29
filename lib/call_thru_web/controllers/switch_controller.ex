@@ -1,7 +1,7 @@
 defmodule CallThruWeb.SwitchController do
   use CallThruWeb, :controller
 
-  alias CallThru.Fabric
+  alias CallThru.{Fabric,Repo}
   alias CallThru.Fabric.Switch
 
   def index(conn, _params) do
@@ -27,6 +27,7 @@ defmodule CallThruWeb.SwitchController do
 
   def show(conn, %{"id" => id}) do
     switch = Fabric.get_switch!(id)
+    |> Repo.preload(:lines)
     render(conn, "show.html", switch: switch)
   end
 

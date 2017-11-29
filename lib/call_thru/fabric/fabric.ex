@@ -6,7 +6,7 @@ defmodule CallThru.Fabric do
   import Ecto.Query, warn: false
   alias CallThru.Repo
 
-  alias CallThru.Fabric.Switch
+  alias CallThru.Fabric.{Switch,Line}
 
   @doc """
   Returns the list of switches.
@@ -36,6 +36,9 @@ defmodule CallThru.Fabric do
 
   """
   def get_switch!(id), do: Repo.get!(Switch, id)
+
+  def get_switch_by_prefix(prefix), do: Repo.get_by(Switch, prefix: prefix)
+  
 
   @doc """
   Creates a switch.
@@ -102,8 +105,6 @@ defmodule CallThru.Fabric do
     Switch.changeset(switch, %{})
   end
 
-  alias CallThru.Fabric.Line
-
   @doc """
   Returns the list of lines.
 
@@ -115,6 +116,7 @@ defmodule CallThru.Fabric do
   """
   def list_lines do
     Repo.all(Line)
+    |> Enum.map(&Repo.preload(&1,:switch))
   end
 
   @doc """
@@ -131,7 +133,7 @@ defmodule CallThru.Fabric do
       ** (Ecto.NoResultsError)
 
   """
-  def get_line!(id), do: Repo.get!(Line, id)
+  def get_line!(id), do: Repo.get!(Line, id) |> Repo.preload(:switch)
 
   @doc """
   Creates a line.

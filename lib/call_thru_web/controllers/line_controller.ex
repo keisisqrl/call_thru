@@ -11,7 +11,8 @@ defmodule CallThruWeb.LineController do
 
   def new(conn, _params) do
     changeset = Fabric.change_line(%Line{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset,
+      switches: Fabric.list_switches)
   end
 
   def create(conn, %{"line" => line_params}) do
@@ -21,7 +22,10 @@ defmodule CallThruWeb.LineController do
         |> put_flash(:info, "Line created successfully.")
         |> redirect(to: line_path(conn, :show, line))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html",
+          changeset: changeset,
+          switches: Fabric.list_switches
+        )
     end
   end
 
@@ -33,7 +37,8 @@ defmodule CallThruWeb.LineController do
   def edit(conn, %{"id" => id}) do
     line = Fabric.get_line!(id)
     changeset = Fabric.change_line(line)
-    render(conn, "edit.html", line: line, changeset: changeset)
+    render(conn, "edit.html", line: line, changeset: changeset,
+      switches: Fabric.list_switches )
   end
 
   def update(conn, %{"id" => id, "line" => line_params}) do
@@ -45,7 +50,8 @@ defmodule CallThruWeb.LineController do
         |> put_flash(:info, "Line updated successfully.")
         |> redirect(to: line_path(conn, :show, line))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", line: line, changeset: changeset)
+        render(conn, "edit.html", line: line, changeset: changeset,
+          switches: Fabric.list_switches )
     end
   end
 
