@@ -12,7 +12,9 @@ defmodule CallThru.Fabric.Line do
     field :call_id, :id
 
     belongs_to :switch, Switch, define_field: false
-    belongs_to :call, Call, define_field: false, on_replace: :nilify
+
+    has_many :call_origin, Call, foreign_key: :origin_line_id
+    has_many :call_term, Call, foreign_key: :term_line_id
 
     timestamps()
   end

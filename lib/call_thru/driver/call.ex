@@ -14,8 +14,8 @@ defmodule CallThru.Driver.Call do
 
     field :finish, :naive_datetime
 
-    has_one :origin_line, Line, foreign_key: :call_id, on_replace: :nilify
-    has_one :term_line, Line, foreign_key: :call_id, on_replace: :nilify
+    belongs_to :origin_line, Line
+    belongs_to :term_line, Line
 
     timestamps()
   end
@@ -34,7 +34,7 @@ defmodule CallThru.Driver.Call do
       end
     end).()
     |> put_assoc(:origin_line,attrs[:origin_line])
-    |> cast_assoc(:term_line)
+    |> put_assoc(:term_line,attrs[:term_line])
     |> validate_required([])
   end
 end
