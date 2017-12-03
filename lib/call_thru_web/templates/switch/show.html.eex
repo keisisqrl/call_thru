@@ -20,11 +20,11 @@
           <li>
             <%= link line.number, to: line_path(@conn,:show,line.id) %>
           </li>
-          <%= end %>
+          <% end %>
     </ul>
-    <%= else %>
+    <% else %>
     <em>none</em>
-    <%= end %>
+    <% end %>
   </li>
   
           
