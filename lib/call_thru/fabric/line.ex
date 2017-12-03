@@ -9,7 +9,6 @@ defmodule CallThru.Fabric.Line do
     field :number, :string
     field :switch_id, :id
     field :in_use, :boolean, default: false
-    field :call_id, :id
 
     belongs_to :switch, Switch, define_field: false
 
